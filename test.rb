@@ -8,7 +8,11 @@ server = WEBrick::HTTPServer.new({
   Signal.trap(signal){ server.shutdown }
 }
 #server.mount('/test', WEBrick::HTTPServlet::ERBHandler, 'test.html.erb')
-server.mount('/test', WEBrick::HTTPServlet::ERBHandler, 'web_test.html.erb')
+
+# root の設定
+server.mount('/', WEBrick::HTTPServlet::ERBHandler, 'web_test.html.erb')
+
+#server.mount('/test', WEBrick::HTTPServlet::ERBHandler, 'web_test.html.erb')
 #server.mount('/indicate.cgi', WEBrick::HTTPServlet::CGIHandler, 'indicate.rb')
 # この一行を追記
 server.mount('/goya.cgi', WEBrick::HTTPServlet::CGIHandler, 'goya.rb')
